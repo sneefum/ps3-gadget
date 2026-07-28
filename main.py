@@ -9,16 +9,9 @@ con.left_stick.tilt_stick(1, 3)
 con.right_stick.tilt_stick(0.1, 0)
 # x: 0.1, y: 0. length < 1, no need to normalize.
 
-con.buttons.press_button(ps3.Button.L2)
-con.buttons.press_button(ps3.Button.R2) # Press the square button (obviously)
-con.buttons.press_button(ps3.Button.L1) # PlayStation button, has special behavior
-con.buttons.press_button(ps3.Button.Circle)
-con.buttons.press_button(ps3.Button.X)
 con.buttons.press_button(ps3.Button.Select)
-con.buttons.press_button(ps3.Button.L3)
-con.buttons.press_button(ps3.Button.R3)
-con.buttons.press_button(ps3.Button.Down)
-con.buttons.press_button(ps3.Button.Right)
+con.buttons.press_button(ps3.Button.Square) # Press the square button (obviously)
+con.buttons.press_button(ps3.Button.PS) # PlayStation button, has special behavior
 
 
 packet = con.generate_input_packet()

@@ -132,7 +132,7 @@ class Controller:
         packet.extend([0x00] * 3) # Unknown
         packet.extend([0x02, 0xEE, 0x10]) # Controller Status: Plugged In, Charging, Wired with Rumble Enabled
         packet.extend([0x00] * 9) # Resered
-        packet.extend([0xFF, 0x01] * 4) # TODO: Accel and Gyro
+        packet.extend([0x01, 0xFF] * 4) # TODO: Accel and Gyro
        
         if len(packet) > 49:
             raise ValueError(f"Packet is too long! Expected 49 bytes and got {len(packet)}!")
@@ -141,27 +141,3 @@ class Controller:
 
         packet_bytes = bytes(packet)
 
-        return packet_bytes
-
-#if __name__ == "__main__":
-#    print("Running self test!")
-#
-#    con = Controller()
-#
-#    print(con.buttons)
-#    print(con.buttons.pressed)
-#    con.buttons.press_button(Button.Square)
-#    print(con.buttons)
-#    print(con.buttons.pressed)
-#    print(Button.Square)
-#
-#    print(con.left_stick)
-#    print(con.right_stick)
-#    con.left_stick.tilt_stick(0, 0.1)
-#    con.right_stick.tilt_stick(100, 700)
-#    print(con.left_stick)
-#    print(con.right_stick)
-#    con.left_stick.tilt_stick(-1, -1)
-#    con.right_stick.tilt_stick(1, 1)
-#
-#    print(con.generate_input_packet())
