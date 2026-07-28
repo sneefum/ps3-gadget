@@ -78,7 +78,7 @@ class Controller:
             255 * self.buttons & Button.Down> 0,
             255 * self.buttons & Button.Left > 0,
             255 * self.buttons & Button.L2 > 0,
-            255 * self.buttons & Button.R2 > 0
+            255 * self.buttons & Button.R2 > 0,
             255 * self.buttons & Button.L1 > 0,
             255 * self.buttons & Button.R1 > 0,
             255 * self.buttons & Button.Triangle > 0,
