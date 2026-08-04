@@ -2,9 +2,12 @@ from typing import Iterator
 import os
 import math
 from enum import Enum
+import re
 
 if os.geteuid() != 0:
     raise PermissionError("This module must be ran as root!")
+
+used_gadgets = []
 
 class Button(Enum):
     L2 =       0x0001
@@ -89,6 +92,15 @@ class Controller:
     def __init__(self, dev: str = "/dev/hidg0") -> None:
         self.dev = dev
 
+        if re.search(r"^/dev/hidg\d+$", dev) == []:
+            raise ValueError(f"{dev} is not a path to a USB gadget!")
+
+        if not os.path.exists(dev):
+            raise FileNotFoundError(f"{dev} does not exist. Are you sure you created a gadget?")
+
+        if dev in used_gadgets:
+            raise RuntimeError(f"{dev} is already in use by another controller!")
+
         self.buttons = Buttons()
         
         self.left_stick = Stick()
@@ -141,3 +153,4 @@ class Controller:
 
         packet_bytes = bytes(packet)
 
+        return packet_bytes
